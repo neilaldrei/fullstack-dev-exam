@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\V1\Tour;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\V1\TourStoreRequest;
+use App\Http\Resources\V1\TourResource;
 use App\Models\V1\Tour;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TourController extends Controller
 {
@@ -15,17 +19,11 @@ class TourController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $tours = Tour::where('status', Tour::STATUS_PUBLIC)
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate(5);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return TourResource::collection($tours);
     }
 
     /**
@@ -34,9 +32,25 @@ class TourController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TourStoreRequest $request)
     {
-        //
+        $attributes = $request->validated();
+
+        DB::beginTransaction();
+
+        try {
+            $tour = Tour::create($attributes);
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return response ([
+                'message' => $e,
+            ], 422);
+        }
+
+        return new TourResource($tour);
     }
 
     /**
@@ -47,18 +61,7 @@ class TourController extends Controller
      */
     public function show(Tour $tour)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\V1\Tour  $tour
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tour $tour)
-    {
-        //
+        return new TourResource($tour);
     }
 
     /**
@@ -68,9 +71,25 @@ class TourController extends Controller
      * @param  \App\Models\V1\Tour  $tour
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tour $tour)
+    public function update(TourStoreRequest $request, Tour $tour)
     {
-        //
+        $attributes = $request->validated();
+
+        DB::beginTransaction();
+
+        try {
+            $tour->update($attributes);
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return response ([
+                'message' => $e,
+            ], 422);
+        }
+
+        return new TourResource($tour);
     }
 
     /**
@@ -81,6 +100,20 @@ class TourController extends Controller
      */
     public function destroy(Tour $tour)
     {
-        //
+
+        DB::beginTransaction();
+        try {
+            $tour->delete();
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return response ([
+                'message' => $e,
+            ], 422);
+        }
+
+        return new TourResource($tour);
     }
 }
