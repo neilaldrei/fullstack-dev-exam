@@ -25,4 +25,8 @@ Route::group(['prefix' => 'v1'], function () {
         Route::resource('passengers', 'PassengerController');
     });
 
+    Route::group(['namespace' => 'V1\Booking'], function () {
+        Route::resource('bookings', 'BookingController');
+    });
+
 });

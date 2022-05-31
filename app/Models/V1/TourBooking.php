@@ -18,7 +18,7 @@ class TourBooking extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['tour_date', 'status', 'created_at'];
+    protected $fillable = ['tour_id', 'tour_date', 'status', 'created_at'];
 
     public function passengers()
     {

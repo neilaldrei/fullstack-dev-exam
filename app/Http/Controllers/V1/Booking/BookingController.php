@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\V1\Passenger;
+namespace App\Http\Controllers\V1\Booking;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\V1\PassengerStoreRequest;
-use App\Http\Resources\V1\PassengerResource;
-use App\Models\V1\Passenger;
+use App\Http\Requests\V1\BookingStoreRequest;
+use App\Http\Resources\V1\BookingResource;
+use App\Models\V1\TourBooking;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PassengerController extends Controller
+class BookingController extends Controller
 {
     /**
      * Store a newly created resource in storage.
@@ -18,13 +18,13 @@ class PassengerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PassengerStoreRequest $request)
+    public function store(BookingStoreRequest $request)
     {
         $attributes = $request->validated();
 
         DB::beginTransaction();
         try {
-            $passenger = Passenger::create($attributes);
+            $booking = TourBooking::create($attributes);
 
             DB::commit();
         } catch (Exception $e) {
@@ -35,34 +35,35 @@ class PassengerController extends Controller
             ], 422);
         }
 
-        return new PassengerResource($passenger);
+        return new BookingResource($booking);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\V1\Passenger  $passenger
+     * @param  \App\Models\V1\TourBooking  $tourBooking
      * @return \Illuminate\Http\Response
      */
-    public function show(Passenger $passenger)
+    public function show(TourBooking $booking)
     {
-        return new PassengerResource($passenger);
+        return new BookingResource($booking);
     }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\V1\Passenger  $passenger
+     * @param  \App\Models\V1\TourBooking  $tourBooking
      * @return \Illuminate\Http\Response
      */
-    public function update(PassengerStoreRequest $request, Passenger $passenger)
+    public function update(BookingStoreRequest $request, TourBooking $booking)
     {
         $attributes = $request->validated();
 
         DB::beginTransaction();
         try {
-            $passenger->update($attributes);
+            $booking = TourBooking::create($attributes);
 
             DB::commit();
         } catch (Exception $e) {
@@ -73,20 +74,20 @@ class PassengerController extends Controller
             ], 422);
         }
 
-        return new PassengerResource($passenger);
+        return new BookingResource($booking);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\V1\Passenger  $passenger
+     * @param  \App\Models\V1\TourBooking  $tourBooking
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Passenger $passenger)
+    public function destroy(TourBooking $booking)
     {
         DB::beginTransaction();
         try {
-            $passenger->delete();
+            $booking->delete();
 
             DB::commit();
         } catch (Exception $e) {
@@ -97,6 +98,6 @@ class PassengerController extends Controller
             ], 422);
         }
 
-        return new PassengerResource($passenger);
+        return new BookingResource($booking);
     }
 }
