@@ -10,6 +10,10 @@ class Tour extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const STATUS_DRAFT = 0;
+    
+    const STATUS_PUBLIC = 1;
+
     protected $guarded = ['id'];
 
     protected $fillable = ['name', 'itenary', 'status', 'created_at'];

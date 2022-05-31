@@ -10,6 +10,12 @@ class TourBooking extends Model
 {
     use HasFactory, SoftDeletes;
 
+    const STATUS_SUBMITTED = 0;
+    
+    const STATUS_CONFIRMED = 1;
+
+    const STATUS_CANCELLED = 2;
+
     protected $guarded = ['id'];
 
     protected $fillable = ['tour_date', 'status', 'created_at'];
