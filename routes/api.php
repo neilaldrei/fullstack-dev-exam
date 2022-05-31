@@ -21,4 +21,8 @@ Route::group(['prefix' => 'v1'], function () {
         Route::resource('tours', 'TourController');
     });
 
+    Route::group(['namespace' => 'V1\Passenger'], function () {
+        Route::resource('passengers', 'PassengerController');
+    });
+
 });
