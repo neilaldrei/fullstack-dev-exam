@@ -11,7 +11,6 @@ import Home from '../views/Home';
 
 // Tours
 import ShowTour from "../views/Tour/ShowTour";
-import EditTour from "../views/Tour/EditTour";
 
 // Booking
 // import Booking from "../views/Booking/"
@@ -35,11 +34,6 @@ const ROUTER = new VueRouter({
                     name: "ShowTour",
                     component: ShowTour
                 },
-                {
-                    path: '/tours/:name/:id/edit',
-                    name: "EditTour",
-                    component: EditTour
-                }
             ]
         }
     ]

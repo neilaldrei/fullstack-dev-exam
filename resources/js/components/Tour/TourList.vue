@@ -38,7 +38,7 @@
                 </template>
 
                 <template v-slot:[`item.actions`]="props">
-                    <v-btn icon small color="warning"><v-icon small>mdi-pencil</v-icon></v-btn>
+                    <edit-tour :item="props.item"></edit-tour>
                     <v-btn icon small color="error" @click.prevent="removeTour(props.item.id)"><v-icon small>mdi-delete</v-icon></v-btn>
                 </template>
             </v-data-table>
@@ -48,6 +48,7 @@
 
 <script>
 import NewTour from './NewTour.vue';
+import EditTour from './EditTour.vue';
 
 export default {
     name: "TourList",
@@ -84,7 +85,8 @@ export default {
     },
 
     components: {
-        'new-tour': NewTour
+        'new-tour': NewTour,
+        'edit-tour': EditTour
     }
 }
 </script>

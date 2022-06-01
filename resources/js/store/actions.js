@@ -54,6 +54,24 @@ let actions = {
         })
     },
 
+    UPDATE_API({ commit }, payload) {
+        return new Promise ((resolve, reject) => {
+
+            commit('LOADING', true)
+
+            axios
+            .put(`${BASE_URL}/${payload.url}`, payload)
+            .then(response=> {
+                commit('UPDATE_LIST_ITEM', response.data.data);
+                resolve(response)
+            })
+            .catch(err => {
+                reject(err)
+            })
+
+        })
+    },
+
     DELETE_API ({ commit }, payload) {
         return new Promise ((resolve, reject) => {
 
