@@ -21,7 +21,7 @@ class TourController extends Controller
     {
         $tours = Tour::where('status', Tour::STATUS_PUBLIC)
                     ->orderBy('created_at', 'DESC')
-                    ->paginate(5);
+                    ->get();
 
         return TourResource::collection($tours);
     }
@@ -61,7 +61,7 @@ class TourController extends Controller
      */
     public function show(Tour $tour)
     {
-        return new TourResource($tour);
+        return new TourResource($tour->load('tourDates'));
     }
 
     /**

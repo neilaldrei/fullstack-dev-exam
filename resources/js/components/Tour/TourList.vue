@@ -36,6 +36,11 @@
                 <template v-slot:[`item.status`]="props">
                     <v-chip x-small label :color="props.item.status === 0 ? 'error' : 'success'">{{ props.item.status === 0 ? 'Draft' : 'Public' }}</v-chip>
                 </template>
+
+                <template v-slot:[`item.actions`]="props">
+                    <v-btn icon small color="warning"><v-icon small>mdi-pencil</v-icon></v-btn>
+                    <v-btn icon small color="error" @click.prevent="removeTour(props.item.id)"><v-icon small>mdi-delete</v-icon></v-btn>
+                </template>
             </v-data-table>
         </v-card-text>
     </v-card>
@@ -53,6 +58,7 @@ export default {
                 { text: 'Name', value: 'name' },
                 { text: 'Itenaries', value: 'itenary' },
                 { text: 'Status', value: 'status' },
+                { text: 'Actions', sortable: false, value: 'actions' },
             ],
         }
     },
@@ -64,6 +70,10 @@ export default {
     methods: {
         fetchList : function () {
             this.$store.dispatch('FETCH_API', {url: 'tours'});
+        },
+
+        removeTour : function (tourId) {
+            this.$store.dispatch('DELETE_API', {url: `tours/${tourId}`})
         }
     },
 

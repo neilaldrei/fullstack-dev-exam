@@ -36,6 +36,42 @@ let actions = {
             })
 
         })
+    },
+
+    SHOW_API ({ commit }, payload) {
+        return new Promise ((resolve,reject) => {
+
+            commit('LOADING', true)
+            
+            axios.get(`${BASE_URL}/${payload.url}`)
+            .then(response => {
+                commit('SET_LIST_ITEM', response.data.data);
+                resolve(response.data);
+            })
+            .catch(err => {
+                reject(err)
+            })
+
+        })
+    },
+
+    DELETE_API ({ commit }, payload) {
+        return new Promise ((resolve, reject) => {
+
+            commit('LOADING', true)
+
+            axios
+            .delete(`${BASE_URL}/${payload.url}`)
+            .then(response => {
+                console.log(response);
+                commit('UNSET_LIST_ITEM', response.data.data.id);
+                resolve(response.data);
+            })
+            .catch(err => {
+                reject(err)
+            })
+
+        })
     }
 };
 

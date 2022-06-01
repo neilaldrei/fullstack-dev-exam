@@ -7,8 +7,12 @@ let mutations = {
         state.list = payload
     },
 
-    UNSET_DATA (state, payload) {
-        let i = state.find(item => item.id === payload.id);
+    SET_LIST_ITEM (state, payload) {
+        state.item = payload
+    },
+
+    UNSET_LIST_ITEM (state, payload) {
+        let i = state.list.findIndex((item => item.id === payload));
 
         state.list.splice(i, 1);
     }

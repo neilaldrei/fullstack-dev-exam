@@ -43,28 +43,6 @@ class TourDateController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\V1\TourDate  $tourDate
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TourDate $tourDate)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\V1\TourDate  $tourDate
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(TourDate $tourDate)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

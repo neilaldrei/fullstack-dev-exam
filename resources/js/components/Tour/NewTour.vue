@@ -95,7 +95,7 @@ export default {
     data () {
         return {
             tourId: null,
-            dialog: true,
+            dialog: false,
             stepper: 1,
             tour: null,
             tourDates: null,

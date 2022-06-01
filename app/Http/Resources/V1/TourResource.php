@@ -19,7 +19,8 @@ class TourResource extends JsonResource
             'name' => $this->name,
             'itenary' => $this->itenary,
             'status' => $this->status,
-            'bookings' => $this->whenLoaded(BookingResource::class)
+            'bookings' => BookingResource::collection($this->whenLoaded('bookings')),
+            'tourDates' => TourDateResource::collection($this->whenLoaded('tourDates')),
         ];
     }
 }

@@ -6,6 +6,7 @@ let state = {
         color: '',
         timeout: 10000,
     },
+    item: null,
     list: []
 }
 
