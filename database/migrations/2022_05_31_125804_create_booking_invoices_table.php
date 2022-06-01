@@ -22,7 +22,7 @@ class CreateBookingInvoicesTable extends Migration
             $table->timestamps();
 
             $table->foreign('booking_id')
-                    ->references('id')->on('tour_bookings')
+                    ->references('id')->on('bookings')
                         ->onDelete('cascade');
         });
     }

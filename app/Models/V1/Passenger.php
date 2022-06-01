@@ -20,6 +20,6 @@ class Passenger extends Model
 
     public function bookings()
     {
-        return $this->belongsToMany(TourBooking::class, 'booking_passenger');
+        return $this->belongsToMany(Booking::class, 'booking_passenger');
     }
 }

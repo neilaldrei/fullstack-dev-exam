@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\V1\TourBooking;
+use App\Models\V1\Booking;
 use Illuminate\Database\Seeder;
 
 class TourBookingSeeder extends Seeder
@@ -14,6 +14,6 @@ class TourBookingSeeder extends Seeder
      */
     public function run()
     {
-        TourBooking::factory(10)->create();
+        Booking::factory(10)->create();
     }
 }

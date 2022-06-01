@@ -5,9 +5,8 @@ namespace App\Http\Controllers\V1\Booking;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\BookingStoreRequest;
 use App\Http\Resources\V1\BookingResource;
-use App\Models\V1\TourBooking;
+use App\Models\V1\Booking;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
@@ -24,7 +23,7 @@ class BookingController extends Controller
 
         DB::beginTransaction();
         try {
-            $booking = TourBooking::create($attributes);
+            $booking = Booking::create($attributes);
 
             DB::commit();
         } catch (Exception $e) {
@@ -41,10 +40,10 @@ class BookingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\V1\TourBooking  $tourBooking
+     * @param  \App\Models\V1\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function show(TourBooking $booking)
+    public function show(Booking $booking)
     {
         return new BookingResource($booking);
     }
@@ -54,16 +53,16 @@ class BookingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\V1\TourBooking  $tourBooking
+     * @param  \App\Models\V1\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function update(BookingStoreRequest $request, TourBooking $booking)
+    public function update(BookingStoreRequest $request, Booking $booking)
     {
         $attributes = $request->validated();
 
         DB::beginTransaction();
         try {
-            $booking = TourBooking::create($attributes);
+            $booking->update($attributes);
 
             DB::commit();
         } catch (Exception $e) {
@@ -80,10 +79,10 @@ class BookingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\V1\TourBooking  $tourBooking
+     * @param  \App\Models\V1\Booking  $tourBooking
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TourBooking $booking)
+    public function destroy(Booking $booking)
     {
         DB::beginTransaction();
         try {

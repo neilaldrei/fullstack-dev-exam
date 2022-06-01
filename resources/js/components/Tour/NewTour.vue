@@ -97,7 +97,7 @@
                     Close
                 </v-btn>
             </template>
-            </v-snackbar>
+        </v-snackbar>
     </v-dialog>
 </template>
 

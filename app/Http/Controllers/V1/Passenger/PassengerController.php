@@ -26,6 +26,8 @@ class PassengerController extends Controller
         try {
             $passenger = Passenger::create($attributes);
 
+            $passenger->bookings()->attach($request['booking_id']);
+
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();

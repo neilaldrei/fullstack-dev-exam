@@ -2,13 +2,13 @@
 
 namespace Database\Factories\v1;
 
+use App\Models\V1\Booking;
 use App\Models\V1\Tour;
-use App\Models\V1\TourBooking;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TourBookingFactory extends Factory
+class BookingFactory extends Factory
 {
-    protected $model = TourBooking::class;
+    protected $model = Booking::class;
 
     /**
      * Define the model's default state.
@@ -21,7 +21,7 @@ class TourBookingFactory extends Factory
                     ->select('id')
                     ->pluck('id');
 
-        $statuses = array(TourBooking::STATUS_SUBMITTED, TourBooking::STATUS_CONFIRMED, TourBooking::STATUS_CANCELLED);
+        $statuses = array(Booking::STATUS_SUBMITTED, Booking::STATUS_CONFIRMED, Booking::STATUS_CANCELLED);
 
         return [
             'tour_id' => $this->faker->randomElement($tours),

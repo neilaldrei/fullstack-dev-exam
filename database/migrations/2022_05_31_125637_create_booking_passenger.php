@@ -17,7 +17,6 @@ class CreateBookingPassenger extends Migration
             $table->id();
             $table->unsignedBigInteger('booking_id');
             $table->unsignedBigInteger('passenger_id');
-            $table->text('special_request');
         });
     }
 
