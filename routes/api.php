@@ -19,6 +19,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::group(['namespace' => 'V1\Tour'], function () {
         Route::resource('tours', 'TourController');
+        Route::resource('tour-dates', 'TourDateController');
     });
 
     Route::group(['namespace' => 'V1\Passenger'], function () {
@@ -26,7 +27,6 @@ Route::group(['prefix' => 'v1'], function () {
     });
 
     Route::group(['namespace' => 'V1\Booking'], function () {
-        Route::resource('bookings', 'BookingController');
+        Route::resource('bookingstou', 'BookingController');
     });
-
 });

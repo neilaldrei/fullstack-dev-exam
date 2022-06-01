@@ -13,12 +13,12 @@ export default new Vuetify({
         dark: false,
         themes: {
             light: {
-                primary: '#50C878',
+                primary: '#673AB7',
                 secondary: '#4CAF50',
                 accent: '#FF7D62',
             },
             dark: {
-                primary: '#50C878',
+                primary: '#673AB7',
                 secondary: '#4CAF50',
                 accent: '#FF7D62',
             }

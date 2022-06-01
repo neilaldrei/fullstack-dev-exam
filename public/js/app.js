@@ -2054,9 +2054,247 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourList.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/NewTour.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/NewTour.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TourForm_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TourForm.vue */ "./resources/js/components/Tour/TourForm.vue");
+/* harmony import */ var _TourDateForm_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TourDateForm.vue */ "./resources/js/components/Tour/TourDateForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "NewTour",
+  data: function data() {
+    return {
+      tourId: null,
+      dialog: true,
+      stepper: 1,
+      tour: null,
+      tourDates: null
+    };
+  },
+  methods: {
+    tourStoredHandler: function tourStoredHandler(payload) {
+      this.tourId = payload.id;
+      this.stepper = 2;
+      this.tour = payload;
+    },
+    tourDateStoredHandler: function tourDateStoredHandler(payload) {
+      this.stepper = 3;
+      this.tourDates = payload;
+    },
+    cancelHandler: function cancelHandler() {
+      this.stepper > 1 && this.stepper <= 3 ? this.stepper-- : this.dialog = false;
+    },
+    finishHandler: function finishHandler() {
+      this.stepper = 1;
+      this.dialog = false;
+    }
+  },
+  components: {
+    TourForm: _TourForm_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    TourDateForm: _TourDateForm_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourDateForm.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourDateForm.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "TourDateForm",
+  props: ['tourId'],
+  data: function data() {
+    return {
+      tourDate: {
+        dates: [new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10)],
+        status: 0,
+        url: 'tour-dates'
+      },
+      statuses: [{
+        text: "Disabled",
+        value: 0
+      }, {
+        text: "Enabled",
+        value: 1
+      }]
+    };
+  },
+  methods: {
+    storeTourDate: function storeTourDate() {
+      var _this = this;
+
+      this.$store.dispatch("POST_API", _objectSpread({
+        tour_id: this.tourId
+      }, this.tourDate)).then(function (response) {
+        _this.$emit('onFinish', _this.tourDate);
+      })["catch"](function (err) {});
+    },
+    cancel: function cancel() {
+      this.$emit('onCancel');
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourForm.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourList.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourForm.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2104,6 +2342,124 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "TourForm",
+  data: function data() {
+    return {
+      valid: false,
+      tour: {
+        name: '',
+        itenary: '',
+        status: 0,
+        url: 'tours'
+      },
+      statuses: [{
+        text: "Draft",
+        value: 0
+      }, {
+        text: "Public",
+        value: 1
+      }],
+      rules: [function (v) {
+        return !!v || 'This field is required';
+      }, function (v) {
+        return v && v.length >= 2 || 'This field must be more than 2 characters';
+      }]
+    };
+  },
+  methods: {
+    storeTour: function storeTour() {
+      var _this = this;
+
+      this.$store.dispatch("POST_API", this.tour).then(function (response) {
+        _this.$emit('onFinish', response.data);
+      });
+    },
+    cancel: function cancel() {
+      this.$emit('onCancel');
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourList.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourList.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _NewTour_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewTour.vue */ "./resources/js/components/Tour/NewTour.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "TourList",
   data: function data() {
@@ -2128,13 +2484,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fetchList: function fetchList() {
-      this.$store.dispatch('FETCH_API');
+      this.$store.dispatch('FETCH_API', {
+        url: 'tours'
+      });
     }
   },
   computed: {
     items: function items() {
       return this.$store.getters.LIST;
     }
+  },
+  components: {
+    'new-tour': _NewTour_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -2266,12 +2627,12 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use((vuetify__WEBPACK_IMPORTED_MODUL
     dark: false,
     themes: {
       light: {
-        primary: '#50C878',
+        primary: '#673AB7',
         secondary: '#4CAF50',
         accent: '#FF7D62'
       },
       dark: {
-        primary: '#50C878',
+        primary: '#673AB7',
         secondary: '#4CAF50',
         accent: '#FF7D62'
       }
@@ -2338,11 +2699,22 @@ var actions = {
     var commit = _ref.commit;
     return new Promise(function (resolve, reject) {
       commit('LOADING', true);
-      axios.get("".concat(BASE_URL, "/tours"), {
+      axios.get("".concat(BASE_URL, "/").concat(payload.url), {
         params: {}
       }).then(function (response) {
         console.log(response);
         commit('SET_LIST', response.data.data);
+        resolve(response.data);
+      })["catch"](function (err) {
+        reject(err);
+      });
+    });
+  },
+  POST_API: function POST_API(_ref2, payload) {
+    var commit = _ref2.commit;
+    return new Promise(function (resolve, reject) {
+      commit('LOADING', true);
+      axios.post("".concat(BASE_URL, "/").concat(payload.url), payload).then(function (response) {
         resolve(response.data);
       })["catch"](function (err) {
         reject(err);
@@ -20480,6 +20852,123 @@ module.exports = function (list, options) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Tour/NewTour.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/Tour/NewTour.vue ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _NewTour_vue_vue_type_template_id_20c3eaa8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewTour.vue?vue&type=template&id=20c3eaa8& */ "./resources/js/components/Tour/NewTour.vue?vue&type=template&id=20c3eaa8&");
+/* harmony import */ var _NewTour_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewTour.vue?vue&type=script&lang=js& */ "./resources/js/components/Tour/NewTour.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _NewTour_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NewTour_vue_vue_type_template_id_20c3eaa8___WEBPACK_IMPORTED_MODULE_0__.render,
+  _NewTour_vue_vue_type_template_id_20c3eaa8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Tour/NewTour.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Tour/TourDateForm.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/Tour/TourDateForm.vue ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TourDateForm_vue_vue_type_template_id_e01fa1b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TourDateForm.vue?vue&type=template&id=e01fa1b4& */ "./resources/js/components/Tour/TourDateForm.vue?vue&type=template&id=e01fa1b4&");
+/* harmony import */ var _TourDateForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TourDateForm.vue?vue&type=script&lang=js& */ "./resources/js/components/Tour/TourDateForm.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TourDateForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TourDateForm_vue_vue_type_template_id_e01fa1b4___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TourDateForm_vue_vue_type_template_id_e01fa1b4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Tour/TourDateForm.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Tour/TourForm.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/Tour/TourForm.vue ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TourForm_vue_vue_type_template_id_c4e07150___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TourForm.vue?vue&type=template&id=c4e07150& */ "./resources/js/components/Tour/TourForm.vue?vue&type=template&id=c4e07150&");
+/* harmony import */ var _TourForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TourForm.vue?vue&type=script&lang=js& */ "./resources/js/components/Tour/TourForm.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TourForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TourForm_vue_vue_type_template_id_c4e07150___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TourForm_vue_vue_type_template_id_c4e07150___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Tour/TourForm.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Tour/TourList.vue":
 /*!***************************************************!*\
   !*** ./resources/js/components/Tour/TourList.vue ***!
@@ -20597,6 +21086,54 @@ component.options.__file = "resources/js/views/Home.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Tour/NewTour.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Tour/NewTour.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewTour_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NewTour.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/NewTour.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewTour_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Tour/TourDateForm.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/Tour/TourDateForm.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TourDateForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TourDateForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourDateForm.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TourDateForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Tour/TourForm.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Tour/TourForm.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TourForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TourForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourForm.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TourForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Tour/TourList.vue?vue&type=script&lang=js&":
 /*!****************************************************************************!*\
   !*** ./resources/js/components/Tour/TourList.vue?vue&type=script&lang=js& ***!
@@ -20642,6 +21179,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Home.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/views/Home.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Tour/NewTour.vue?vue&type=template&id=20c3eaa8&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/Tour/NewTour.vue?vue&type=template&id=20c3eaa8& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewTour_vue_vue_type_template_id_20c3eaa8___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewTour_vue_vue_type_template_id_20c3eaa8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewTour_vue_vue_type_template_id_20c3eaa8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NewTour.vue?vue&type=template&id=20c3eaa8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/NewTour.vue?vue&type=template&id=20c3eaa8&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Tour/TourDateForm.vue?vue&type=template&id=e01fa1b4&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/Tour/TourDateForm.vue?vue&type=template&id=e01fa1b4& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TourDateForm_vue_vue_type_template_id_e01fa1b4___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TourDateForm_vue_vue_type_template_id_e01fa1b4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TourDateForm_vue_vue_type_template_id_e01fa1b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TourDateForm.vue?vue&type=template&id=e01fa1b4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourDateForm.vue?vue&type=template&id=e01fa1b4&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Tour/TourForm.vue?vue&type=template&id=c4e07150&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/Tour/TourForm.vue?vue&type=template&id=c4e07150& ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TourForm_vue_vue_type_template_id_c4e07150___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TourForm_vue_vue_type_template_id_c4e07150___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TourForm_vue_vue_type_template_id_c4e07150___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TourForm.vue?vue&type=template&id=c4e07150& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourForm.vue?vue&type=template&id=c4e07150&");
+
 
 /***/ }),
 
@@ -20696,6 +21284,600 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/NewTour.vue?vue&type=template&id=20c3eaa8&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/NewTour.vue?vue&type=template&id=20c3eaa8& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-dialog",
+    {
+      attrs: { fullscreen: "" },
+      scopedSlots: _vm._u([
+        {
+          key: "activator",
+          fn: function (ref) {
+            var on = ref.on
+            var attrs = ref.attrs
+            return [
+              _c(
+                "v-btn",
+                _vm._g(
+                  _vm._b(
+                    {
+                      staticClass: "rounded-lg",
+                      attrs: { small: "", color: "primary", dark: "" },
+                    },
+                    "v-btn",
+                    attrs,
+                    false
+                  ),
+                  on
+                ),
+                [_vm._v("\n            New Tour\n        ")]
+              ),
+            ]
+          },
+        },
+      ]),
+      model: {
+        value: _vm.dialog,
+        callback: function ($$v) {
+          _vm.dialog = $$v
+        },
+        expression: "dialog",
+      },
+    },
+    [
+      _vm._v(" "),
+      _c(
+        "v-card",
+        { attrs: { flat: "", color: "white" } },
+        [
+          _c("v-card-title", [
+            _c("span", { staticClass: "text-h5" }, [
+              _vm._v("Create a new Tour"),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-card-text",
+            [
+              _c(
+                "v-stepper",
+                {
+                  model: {
+                    value: _vm.stepper,
+                    callback: function ($$v) {
+                      _vm.stepper = $$v
+                    },
+                    expression: "stepper",
+                  },
+                },
+                [
+                  _c(
+                    "v-stepper-header",
+                    [
+                      _c(
+                        "v-stepper-step",
+                        { attrs: { complete: _vm.stepper > 1, step: "1" } },
+                        [
+                          _vm._v(
+                            "\n                        Tour Details\n                    "
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("v-divider"),
+                      _vm._v(" "),
+                      _c(
+                        "v-stepper-step",
+                        { attrs: { complete: _vm.stepper > 2, step: "2" } },
+                        [
+                          _vm._v(
+                            "\n                        Tour Dates\n                    "
+                          ),
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("v-divider"),
+                      _vm._v(" "),
+                      _c("v-stepper-step", { attrs: { step: "3" } }, [
+                        _vm._v(
+                          "\n                        Review\n                    "
+                        ),
+                      ]),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-stepper-items",
+                    [
+                      _c(
+                        "v-stepper-content",
+                        { attrs: { step: "1" } },
+                        [
+                          _c("tour-form", {
+                            on: {
+                              onFinish: _vm.tourStoredHandler,
+                              onCancel: _vm.cancelHandler,
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-stepper-content",
+                        { attrs: { step: "2" } },
+                        [
+                          _c("tour-date-form", {
+                            attrs: { "tour-id": _vm.tourId },
+                            on: {
+                              onFinish: _vm.tourDateStoredHandler,
+                              onCancel: _vm.cancelHandler,
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-stepper-content",
+                        { attrs: { step: "3" } },
+                        [
+                          _vm.stepper === 3
+                            ? _c(
+                                "v-card",
+                                { staticClass: "mb-4" },
+                                [
+                                  _c(
+                                    "v-card-text",
+                                    { staticClass: "pa-4" },
+                                    [
+                                      _c("h1", { staticClass: "overline" }, [
+                                        _vm._v("Tour Details"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("p", { staticClass: "caption" }, [
+                                        _vm._v(_vm._s(_vm.tour.name)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("p", { staticClass: "caption" }, [
+                                        _vm._v(_vm._s(_vm.tour.itenary)),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("v-divider"),
+                                      _vm._v(" "),
+                                      _c("h1", { staticClass: "overline" }, [
+                                        _vm._v("Tour Date Details"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(
+                                        _vm.tourDates.dates,
+                                        function (item) {
+                                          return _c(
+                                            "div",
+                                            {
+                                              key: item,
+                                              staticClass: "caption",
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                    " +
+                                                  _vm._s(item) +
+                                                  " - " +
+                                                  _vm._s(
+                                                    _vm.tourDates.status === 0
+                                                      ? "Enable"
+                                                      : "Disabled"
+                                                  ) +
+                                                  "\n                                "
+                                              ),
+                                            ]
+                                          )
+                                        }
+                                      ),
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "primary",
+                                            small: "",
+                                            rounded: "",
+                                          },
+                                          on: { click: _vm.finishHandler },
+                                        },
+                                        [_vm._v("Finish")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "grey darken-3",
+                                            text: "",
+                                            small: "",
+                                          },
+                                          on: { click: _vm.cancelHandler },
+                                        },
+                                        [_vm._v("Back")]
+                                      ),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourDateForm.vue?vue&type=template&id=e01fa1b4&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourDateForm.vue?vue&type=template&id=e01fa1b4& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-card",
+    { attrs: { flat: "" } },
+    [
+      _c(
+        "v-form",
+        {
+          on: {
+            submit: function ($event) {
+              $event.preventDefault()
+              return _vm.storeTourDate.apply(null, arguments)
+            },
+          },
+        },
+        [
+          _c(
+            "v-card-text",
+            { staticClass: "pa-4" },
+            [
+              _c(
+                "v-container",
+                [
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12" } },
+                        [
+                          _c("v-date-picker", {
+                            attrs: {
+                              "show-current": "",
+                              "full-width": "",
+                              multiple: "",
+                            },
+                            model: {
+                              value: _vm.tourDate.dates,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.tourDate, "dates", $$v)
+                              },
+                              expression: "tourDate.dates",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "6" } },
+                        [
+                          _c("v-select", {
+                            attrs: {
+                              items: _vm.statuses,
+                              "item-text": "text",
+                              "item-value": "value",
+                              label: "Status*",
+                              required: "",
+                              outlined: "",
+                              dense: "",
+                            },
+                            model: {
+                              value: _vm.tourDate.status,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.tourDate, "status", $$v)
+                              },
+                              expression: "tourDate.status",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "grey darken-3", text: "", small: "" },
+                  on: { click: _vm.cancel },
+                },
+                [_vm._v("Back")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: {
+                    color: "primary",
+                    small: "",
+                    rounded: "",
+                    type: "submit",
+                  },
+                },
+                [_vm._v("Review")]
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourForm.vue?vue&type=template&id=c4e07150&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourForm.vue?vue&type=template&id=c4e07150& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-card",
+    { attrs: { flat: "" } },
+    [
+      _c(
+        "v-form",
+        {
+          on: {
+            submit: function ($event) {
+              $event.preventDefault()
+              return _vm.storeTour.apply(null, arguments)
+            },
+          },
+          model: {
+            value: _vm.valid,
+            callback: function ($$v) {
+              _vm.valid = $$v
+            },
+            expression: "valid",
+          },
+        },
+        [
+          _c(
+            "v-card-text",
+            { staticClass: "pa-4" },
+            [
+              _c(
+                "v-container",
+                [
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "6" } },
+                        [
+                          _c("v-text-field", {
+                            attrs: {
+                              label: "Name*",
+                              rules: _vm.rules,
+                              required: "",
+                              outlined: "",
+                              dense: "",
+                            },
+                            model: {
+                              value: _vm.tour.name,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.tour, "name", $$v)
+                              },
+                              expression: "tour.name",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "6" } },
+                        [
+                          _c("v-select", {
+                            attrs: {
+                              items: _vm.statuses,
+                              "item-text": "text",
+                              "item-value": "value",
+                              label: "Status*",
+                              rules: [
+                                function (v) {
+                                  return v != null || "Item is required"
+                                },
+                              ],
+                              required: "",
+                              outlined: "",
+                              dense: "",
+                            },
+                            model: {
+                              value: _vm.tour.status,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.tour, "status", $$v)
+                              },
+                              expression: "tour.status",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12" } },
+                        [
+                          _c("v-textarea", {
+                            attrs: {
+                              label: "Itenary*",
+                              rules: _vm.rules,
+                              required: "",
+                              "no-resize": "",
+                              outlined: "",
+                              dense: "",
+                            },
+                            model: {
+                              value: _vm.tour.itenary,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.tour, "itenary", $$v)
+                              },
+                              expression: "tour.itenary",
+                            },
+                          }),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            [
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "grey darken-3", text: "", small: "" },
+                  on: { click: _vm.cancel },
+                },
+                [_vm._v("Back")]
+              ),
+              _vm._v(" "),
+              _c(
+                "v-btn",
+                {
+                  attrs: {
+                    color: "primary",
+                    small: "",
+                    rounded: "",
+                    type: "submit",
+                  },
+                },
+                [_vm._v("Add Tour Dates")]
+              ),
+            ],
+            1
+          ),
+        ],
+        1
+      ),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourList.vue?vue&type=template&id=5cee239c&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Tour/TourList.vue?vue&type=template&id=5cee239c& ***!
@@ -20715,7 +21897,16 @@ var render = function () {
   return _c(
     "v-card",
     [
-      _c("v-card-title", [_vm._v("Tour List")]),
+      _c(
+        "v-card-title",
+        [
+          _vm._v("\n        Tour List\n        "),
+          _c("v-spacer"),
+          _vm._v(" "),
+          _c("new-tour"),
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "v-card-text",
@@ -20804,10 +21995,11 @@ var render = function () {
                   fn: function (props) {
                     return [
                       _c(
-                        "v-btn",
+                        "v-chip",
                         {
                           attrs: {
-                            small: "",
+                            "x-small": "",
+                            label: "",
                             color:
                               props.item.status === 0 ? "error" : "success",
                           },

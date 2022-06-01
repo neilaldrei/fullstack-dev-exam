@@ -1,6 +1,10 @@
 <template>
     <v-card>
-        <v-card-title>Tour List</v-card-title>
+        <v-card-title>
+            Tour List
+            <v-spacer></v-spacer>
+            <new-tour></new-tour>
+        </v-card-title>
         <v-card-text class="pa-4">
             <v-data-table
                 :headers="headers"
@@ -30,7 +34,7 @@
                 </template>
 
                 <template v-slot:[`item.status`]="props">
-                    <v-btn small :color="props.item.status === 0 ? 'error' : 'success'">{{ props.item.status === 0 ? 'Draft' : 'Public' }}</v-btn>
+                    <v-chip x-small label :color="props.item.status === 0 ? 'error' : 'success'">{{ props.item.status === 0 ? 'Draft' : 'Public' }}</v-chip>
                 </template>
             </v-data-table>
         </v-card-text>
@@ -38,6 +42,8 @@
 </template>
 
 <script>
+import NewTour from './NewTour.vue';
+
 export default {
     name: "TourList",
     data () {
@@ -57,7 +63,7 @@ export default {
 
     methods: {
         fetchList : function () {
-            this.$store.dispatch('FETCH_API');
+            this.$store.dispatch('FETCH_API', {url: 'tours'});
         }
     },
 
@@ -65,6 +71,10 @@ export default {
         items: function () {
             return this.$store.getters.LIST
         }
+    },
+
+    components: {
+        'new-tour': NewTour
     }
 }
 </script>

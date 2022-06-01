@@ -12,7 +12,10 @@ class TourDate extends Model
 
     protected $guarded = ['id'];
 
-    protected $fillable = ['date', 'status'];
+    protected $fillable = ['tour_id', 'date', 'status'];
+
+    const STATUS_DISABLED = 0;
+    const STATUS_ENABLED = 1;
 
     public function tour()
     {
