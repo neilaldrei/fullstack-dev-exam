@@ -68,7 +68,7 @@
 
                                     <h1 class="overline">Tour Date Details</h1>
                                     <div class="caption" v-for="item in tourDates.dates" :key="item">
-                                        {{ item }} - {{ tourDates.status === 0 ? 'Enable' : 'Disabled' }}
+                                        {{ item }} - {{ tourDates.status === 0 ? 'Disabled' : 'Enabled' }}
                                     </div>
                                 </v-card-text>
 
@@ -83,6 +83,21 @@
                 </v-stepper>
             </v-card-text>
         </v-card>
+
+        <v-snackbar top center color="primary" timeout="10000" v-model="status.snackbar">
+            <p class="white--text">{{ status.text }}</p>
+
+            <template v-slot:action="{ attrs }">
+                <v-btn
+                    color="grey darken-3"
+                    text
+                    v-bind="attrs"
+                    @click="status.snackbar = false"
+                    >
+                    Close
+                </v-btn>
+            </template>
+            </v-snackbar>
     </v-dialog>
 </template>
 
@@ -99,6 +114,10 @@ export default {
             stepper: 1,
             tour: null,
             tourDates: null,
+            status: {
+                snackbar: false,
+                text: ''
+            }
         }
     },
 
@@ -108,6 +127,9 @@ export default {
             this.stepper = 2
 
             this.tour = payload;
+            this.status.snackbar = true;
+            this.status.text = 'Tour Saved'
+            this.$store.dispatch('FETCH_API', {url: 'tours'})
         },
 
         tourDateStoredHandler : function (payload) {

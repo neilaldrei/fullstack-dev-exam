@@ -10,7 +10,6 @@ let actions = {
                 params: {}
             })
             .then(response => {
-                console.log(response);
                 commit('SET_LIST', response.data.data);
                 resolve(response.data);
             })
@@ -63,7 +62,6 @@ let actions = {
             axios
             .delete(`${BASE_URL}/${payload.url}`)
             .then(response => {
-                console.log(response);
                 commit('UNSET_LIST_ITEM', response.data.data.id);
                 resolve(response.data);
             })

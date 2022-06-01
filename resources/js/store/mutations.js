@@ -7,6 +7,10 @@ let mutations = {
         state.list = payload
     },
 
+    ADD_TO_LIST (state, payload) {
+        state.list.unshift(payload);
+    },
+
     SET_LIST_ITEM (state, payload) {
         state.item = payload
     },

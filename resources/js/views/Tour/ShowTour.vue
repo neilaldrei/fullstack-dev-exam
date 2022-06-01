@@ -37,9 +37,7 @@ export default {
 
     computed: {
         tour : function () {
-            let tour = this.$store.getters.ITEM
-            console.log(tour);
-            return tour;
+            return this.$store.getters.ITEM
         }
     },
 

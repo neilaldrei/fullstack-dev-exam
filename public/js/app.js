@@ -2155,6 +2155,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2165,7 +2180,11 @@ __webpack_require__.r(__webpack_exports__);
       dialog: false,
       stepper: 1,
       tour: null,
-      tourDates: null
+      tourDates: null,
+      status: {
+        snackbar: false,
+        text: ''
+      }
     };
   },
   methods: {
@@ -2173,6 +2192,11 @@ __webpack_require__.r(__webpack_exports__);
       this.tourId = payload.id;
       this.stepper = 2;
       this.tour = payload;
+      this.status.snackbar = true;
+      this.status.text = 'Tour Saved';
+      this.$store.dispatch('FETCH_API', {
+        url: 'tours'
+      });
     },
     tourDateStoredHandler: function tourDateStoredHandler(payload) {
       this.stepper = 3;
@@ -2698,9 +2722,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     tour: function tour() {
-      var tour = this.$store.getters.ITEM;
-      console.log(tour);
-      return tour;
+      return this.$store.getters.ITEM;
     }
   },
   created: function created() {
@@ -2870,7 +2892,6 @@ var actions = {
       axios.get("".concat(BASE_URL, "/").concat(payload.url), {
         params: {}
       }).then(function (response) {
-        console.log(response);
         commit('SET_LIST', response.data.data);
         resolve(response.data);
       })["catch"](function (err) {
@@ -2906,7 +2927,6 @@ var actions = {
     return new Promise(function (resolve, reject) {
       commit('LOADING', true);
       axios["delete"]("".concat(BASE_URL, "/").concat(payload.url)).then(function (response) {
-        console.log(response);
         commit('UNSET_LIST_ITEM', response.data.data.id);
         resolve(response.data);
       })["catch"](function (err) {
@@ -2992,6 +3012,9 @@ var mutations = {
   },
   SET_LIST: function SET_LIST(state, payload) {
     state.list = payload;
+  },
+  ADD_TO_LIST: function ADD_TO_LIST(state, payload) {
+    state.list.unshift(payload);
   },
   SET_LIST_ITEM: function SET_LIST_ITEM(state, payload) {
     state.item = payload;
@@ -21897,8 +21920,8 @@ var render = function () {
                                                   " - " +
                                                   _vm._s(
                                                     _vm.tourDates.status === 0
-                                                      ? "Enable"
-                                                      : "Disabled"
+                                                      ? "Disabled"
+                                                      : "Enabled"
                                                   ) +
                                                   "\n                                "
                                               ),
@@ -21961,6 +21984,52 @@ var render = function () {
           ),
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          attrs: { top: "", center: "", color: "primary", timeout: "10000" },
+          scopedSlots: _vm._u([
+            {
+              key: "action",
+              fn: function (ref) {
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._b(
+                      {
+                        attrs: { color: "grey darken-3", text: "" },
+                        on: {
+                          click: function ($event) {
+                            _vm.status.snackbar = false
+                          },
+                        },
+                      },
+                      "v-btn",
+                      attrs,
+                      false
+                    ),
+                    [_vm._v("\n                Close\n            ")]
+                  ),
+                ]
+              },
+            },
+          ]),
+          model: {
+            value: _vm.status.snackbar,
+            callback: function ($$v) {
+              _vm.$set(_vm.status, "snackbar", $$v)
+            },
+            expression: "status.snackbar",
+          },
+        },
+        [
+          _c("p", { staticClass: "white--text" }, [
+            _vm._v(_vm._s(_vm.status.text)),
+          ]),
+        ]
       ),
     ],
     1
