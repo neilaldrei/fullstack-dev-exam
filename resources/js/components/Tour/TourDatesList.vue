@@ -22,13 +22,6 @@
 export default {
     name: "tourDatesList",
     props: ['tourDates'],
-    methods: {
-
-    },
-
-    computed : {
-
-    },
 }
 </script>
 

@@ -61,7 +61,7 @@ class TourController extends Controller
      */
     public function show(Tour $tour)
     {
-        return new TourResource($tour->load('tourDates'));
+        return new TourResource($tour->load('tourDates', 'bookings', 'bookings.passengers'));
     }
 
     /**

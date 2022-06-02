@@ -119,11 +119,27 @@
                 <v-spacer></v-spacer>
                 <v-btn text color="grey darken-3" @click="$emit('onClose')">Close</v-btn>
                 <v-btn color="primary" class="rounded-lg" type="submit">
-                    Book
+                    Add Passenger
                 </v-btn>
+                <v-btn color="primary" class="rounded-lg" @click="$emit('onClose')">Close and Finish</v-btn>
             </v-card-actions>
         </v-form>
         </v-card>
+
+        <v-snackbar top center color="primary" timeout="10000" v-model="status.snackbar">
+            <p class="white--text">{{ status.text }}</p>
+
+            <template v-slot:action="{ attrs }">
+                <v-btn
+                    color="grey darken-3"
+                    text
+                    v-bind="attrs"
+                    @click="status.snackbar = false"
+                    >
+                    Close
+                </v-btn>
+            </template>
+        </v-snackbar>
     </v-card>
 </template>
 
@@ -144,6 +160,10 @@ export default {
                 url: 'passengers',
                 special_request: ''
             },
+            status: {
+                snackbar: false,
+                text: ''
+            },
             statuses: [
                 { text: "Disabled", value: 0 },
                 { text: "Enabled", value: 1 },
@@ -163,10 +183,24 @@ export default {
         storePassenger : function () {
             this.$store.dispatch('POST_API', {
                 booking_id: this.booking.id,
+                tour_date_id: this.booking.tour_date_id,
                 ...this.passenger
             })
-            .then(response => {
-                this.$emit('onClose')
+            .then(response => {status
+                this.status.snackbar = true
+                this.status.text = `${this.passenger.given_name} has been added as a passenger`
+
+                this.passenger = {
+                    given_name: '',
+                    surname: '',
+                    email: '',
+                    mobile: '',
+                    passport: '',
+                    birth_date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+                    status: '',
+                    url: 'passengers',
+                    special_request: ''
+                }
             })
             .catch(err => {
 

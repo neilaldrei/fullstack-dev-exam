@@ -16,6 +16,6 @@ class BookingInvoice extends Model
 
     public function booking()
     {
-        return $this->belongsTo(TourBooking::class);
+        return $this->belongsTo(Booking::class);
     }
 }

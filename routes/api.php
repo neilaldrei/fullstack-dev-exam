@@ -49,5 +49,6 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('/bookings/{booking}', 'BookingController@show')->name('booking.show');
         Route::put('/bookings/{booking}', 'BookingController@update')->name('booking.update');
         Route::delete('/bookings/{booking}', 'BookingController@delete')->name('booking.delete');
+        Route::delete('/bookings/{booking}/remove', 'BookingController@removePassenger')->name('booking.remove');
     });
 });

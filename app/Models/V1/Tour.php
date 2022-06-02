@@ -20,11 +20,11 @@ class Tour extends Model
 
     public function tourDates()
     {
-        return $this->hasMany(TourDate::class);
+        return $this->hasMany(TourDate::class)->where('status', self::STATUS_PUBLIC);
     }
 
     public function bookings()
     {
-        return $this->hasMany(TourBooking::class);
+        return $this->hasMany(Booking::class)->orderBy('tour_date', 'DESC');
     }
 }

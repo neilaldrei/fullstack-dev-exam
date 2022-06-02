@@ -7,6 +7,7 @@ use App\Http\Requests\V1\BookingStoreRequest;
 use App\Http\Resources\V1\BookingResource;
 use App\Models\V1\Booking;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class BookingController extends Controller
@@ -87,6 +88,24 @@ class BookingController extends Controller
         DB::beginTransaction();
         try {
             $booking->delete();
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return response ([
+                'message' => $e,
+            ], 422);
+        }
+
+        return new BookingResource($booking);
+    }
+
+    public function removePassenger(Booking $booking, Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $booking->passengers()->detach($request['passenger_id']);
 
             DB::commit();
         } catch (Exception $e) {

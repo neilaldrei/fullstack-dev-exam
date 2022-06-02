@@ -5,7 +5,7 @@
 
             <v-spacer></v-spacer>
 
-            <new-booking v-if="tour != null" :dates="tour.tourDates" :tour-id="tour.id"></new-booking>
+            <new-booking v-if="tour != null && tour.tourDates.length" :dates="tour.tourDates" :tour-id="tour.id"></new-booking>
         </v-card-title>
         <v-card v-if="tour != null">
             <v-card-text class="pa-4">
@@ -15,11 +15,20 @@
                         <p class="text-center mb-8">{{ tour.itenary }}</p>
                     </v-col>
 
-                    <v-col cols="4">
+                    <v-col cols="4" v-if="tour.tourDates.length">
                         <h1>Tour Dates</h1>
                         <tour-dates-list :tour-dates="tour.tourDates"></tour-dates-list>
                     </v-col>
+
+                    <v-col cols="4" v-else>
+                        <h3 class="text-center">No Public Tour Dates Available</h3>
+                    </v-col>
                 </v-row>
+            </v-card-text>
+
+            <v-card-text class="pa-4" v-if="tour.bookings.length">
+                <h1>Bookings</h1>
+                <booking-list :bookings="tour.bookings"></booking-list>
             </v-card-text>
         </v-card>
     </v-container>
@@ -28,6 +37,7 @@
 <script>
 import TourDatesList from '../../components/Tour/TourDatesList.vue';
 import NewBooking from '../../components/Booking/NewBooking.vue';
+import BookingList from '../../components/Booking/BookingList.vue';
 
 export default {
     name: "ShowTour",
@@ -59,7 +69,8 @@ export default {
 
     components: {
         TourDatesList,
-        NewBooking
+        NewBooking,
+        BookingList,
     }
 }
 </script>

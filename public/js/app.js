@@ -2141,6 +2141,137 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Booking/BookingList.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Booking/BookingList.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "BookingList",
+  props: ['bookings'],
+  data: function data() {
+    return {
+      booking: {
+        status: '',
+        passengers: []
+      }
+    };
+  },
+  methods: {
+    changeStatus: function changeStatus(status) {
+      this.booking.status = status;
+      this.$store.dispatch("UPDATE_API", _objectSpread({
+        url: "bookings/".concat(this.booking.id),
+        tour_date: this.booking.date
+      }, this.booking));
+    },
+    removePassenger: function removePassenger(passengerId) {
+      var _this = this;
+
+      axios["delete"]("/api/v1/bookings/".concat(this.booking.id, "/remove"), {
+        passenger_id: passengerId
+      }).then(function (response) {
+        var i = _this.booking.passengers.findIndex(function (item) {
+          return item.id === response.data.id;
+        });
+
+        _this.booking.passengers.splice(i, 1);
+      })["catch"](function (err) {});
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Booking/NewBooking.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Booking/NewBooking.vue?vue&type=script&lang=js& ***!
@@ -2364,6 +2495,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "PassengerForm",
   props: ['booking'],
@@ -2379,6 +2526,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         status: '',
         url: 'passengers',
         special_request: ''
+      },
+      status: {
+        snackbar: false,
+        text: ''
       },
       statuses: [{
         text: "Disabled",
@@ -2404,9 +2555,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       this.$store.dispatch('POST_API', _objectSpread({
-        booking_id: this.booking.id
+        booking_id: this.booking.id,
+        tour_date_id: this.booking.tour_date_id
       }, this.passenger)).then(function (response) {
-        _this.$emit('onClose');
+        status;
+        _this.status.snackbar = true;
+        _this.status.text = "".concat(_this.passenger.given_name, " has been added as a passenger");
+        _this.passenger = {
+          given_name: '',
+          surname: '',
+          email: '',
+          mobile: '',
+          passport: '',
+          birth_date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 10),
+          status: '',
+          url: 'passengers',
+          special_request: ''
+        };
       })["catch"](function (err) {});
     }
   },
@@ -2849,9 +3014,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "tourDatesList",
-  props: ['tourDates'],
-  methods: {},
-  computed: {}
+  props: ['tourDates']
 });
 
 /***/ }),
@@ -3154,6 +3317,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _components_Tour_TourDatesList_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Tour/TourDatesList.vue */ "./resources/js/components/Tour/TourDatesList.vue");
 /* harmony import */ var _components_Booking_NewBooking_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Booking/NewBooking.vue */ "./resources/js/components/Booking/NewBooking.vue");
+/* harmony import */ var _components_Booking_BookingList_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Booking/BookingList.vue */ "./resources/js/components/Booking/BookingList.vue");
 //
 //
 //
@@ -3181,6 +3345,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -3205,7 +3379,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   components: {
     TourDatesList: _components_Tour_TourDatesList_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    NewBooking: _components_Booking_NewBooking_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    NewBooking: _components_Booking_NewBooking_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    BookingList: _components_Booking_BookingList_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   }
 });
 
@@ -3502,9 +3677,7 @@ var mutations = {
     var i = state.list.findIndex(function (item) {
       return item.id === payload.id;
     });
-    state.list[i].name = payload.name;
-    state.list[i].itenary = payload.itenary;
-    state.list[i].status = payload.status;
+    state.list[i] = payload;
   },
   SET_LIST_ITEM: function SET_LIST_ITEM(state, payload) {
     state.item = payload;
@@ -21604,6 +21777,45 @@ component.options.__file = "resources/js/components/Booking/BookingForm.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Booking/BookingList.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/Booking/BookingList.vue ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _BookingList_vue_vue_type_template_id_6e6d85b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BookingList.vue?vue&type=template&id=6e6d85b4& */ "./resources/js/components/Booking/BookingList.vue?vue&type=template&id=6e6d85b4&");
+/* harmony import */ var _BookingList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BookingList.vue?vue&type=script&lang=js& */ "./resources/js/components/Booking/BookingList.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _BookingList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BookingList_vue_vue_type_template_id_6e6d85b4___WEBPACK_IMPORTED_MODULE_0__.render,
+  _BookingList_vue_vue_type_template_id_6e6d85b4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Booking/BookingList.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Booking/NewBooking.vue":
 /*!********************************************************!*\
   !*** ./resources/js/components/Booking/NewBooking.vue ***!
@@ -22049,6 +22261,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Booking/BookingList.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/Booking/BookingList.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BookingList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Booking/BookingList.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Booking/NewBooking.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************!*\
   !*** ./resources/js/components/Booking/NewBooking.vue?vue&type=script&lang=js& ***!
@@ -22238,6 +22466,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingForm_vue_vue_type_template_id_d65fd368___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingForm_vue_vue_type_template_id_d65fd368___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BookingForm.vue?vue&type=template&id=d65fd368& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Booking/BookingForm.vue?vue&type=template&id=d65fd368&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Booking/BookingList.vue?vue&type=template&id=6e6d85b4&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/Booking/BookingList.vue?vue&type=template&id=6e6d85b4& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingList_vue_vue_type_template_id_6e6d85b4___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingList_vue_vue_type_template_id_6e6d85b4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BookingList_vue_vue_type_template_id_6e6d85b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./BookingList.vue?vue&type=template&id=6e6d85b4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Booking/BookingList.vue?vue&type=template&id=6e6d85b4&");
 
 
 /***/ }),
@@ -22541,6 +22786,298 @@ var render = function () {
             ],
             1
           ),
+        ],
+        1
+      ),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Booking/BookingList.vue?vue&type=template&id=6e6d85b4&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Booking/BookingList.vue?vue&type=template&id=6e6d85b4& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "v-row",
+        [
+          _c(
+            "v-col",
+            { attrs: { cols: "3" } },
+            [
+              _c(
+                "v-card",
+                { attrs: { color: "primary lighten-4", dark: "" } },
+                [
+                  _c(
+                    "v-card-text",
+                    { staticClass: "pa-4" },
+                    [
+                      _c(
+                        "v-list",
+                        { attrs: { color: "transparent", dense: "" } },
+                        [
+                          _c(
+                            "v-list-item-group",
+                            { attrs: { color: "primary" } },
+                            _vm._l(_vm.bookings, function (item) {
+                              return _c(
+                                "v-list-item",
+                                {
+                                  key: item.id,
+                                  attrs: { link: "" },
+                                  on: {
+                                    click: function ($event) {
+                                      _vm.booking = item
+                                    },
+                                  },
+                                },
+                                [
+                                  _c(
+                                    "v-list-item-content",
+                                    [
+                                      _c("v-list-item-title", [
+                                        _vm._v(
+                                          "Booking # " +
+                                            _vm._s(item.id) +
+                                            " - " +
+                                            _vm._s(item.date)
+                                        ),
+                                      ]),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              )
+                            }),
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                ],
+                1
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.booking.passengers.length
+            ? _c(
+                "v-col",
+                { attrs: { cols: "8" } },
+                [
+                  _c(
+                    "v-card",
+                    { attrs: { flat: "" } },
+                    [
+                      _c(
+                        "v-card-title",
+                        [
+                          _c(
+                            "h4",
+                            {
+                              staticClass: "overline",
+                              class:
+                                _vm.booking.status === 2
+                                  ? "terror--text"
+                                  : _vm.booking.status === 1
+                                  ? "success--text"
+                                  : "warning--text",
+                            },
+                            [
+                              _vm._v(
+                                "STATUS : " +
+                                  _vm._s(
+                                    _vm.booking.status === 2
+                                      ? "CANCELLED"
+                                      : _vm.booking.status === 1
+                                      ? "CONFIRMED"
+                                      : "SUBMITTED"
+                                  )
+                              ),
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "mr-4",
+                              attrs: {
+                                small: "",
+                                rounded: "",
+                                color: "success",
+                              },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.changeStatus(1)
+                                },
+                              },
+                            },
+                            [_vm._v("Accept")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { small: "", rounded: "", color: "error" },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.changeStatus(2)
+                                },
+                              },
+                            },
+                            [_vm._v("Decline")]
+                          ),
+                        ],
+                        1
+                      ),
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-simple-table", {
+                    scopedSlots: _vm._u(
+                      [
+                        {
+                          key: "default",
+                          fn: function () {
+                            return [
+                              _c("thead", [
+                                _c("tr", [
+                                  _c("th", [_vm._v("ID")]),
+                                  _vm._v(" "),
+                                  _c("th", { staticClass: "text-left" }, [
+                                    _vm._v(
+                                      "\n                                Passport\n                            "
+                                    ),
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Name")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Email")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Mobile")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Birth Date")]),
+                                  _vm._v(" "),
+                                  _c("th", [_vm._v("Status")]),
+                                  _vm._v(" "),
+                                  _c("td", [_vm._v("Actions")]),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "tbody",
+                                _vm._l(_vm.booking.passengers, function (item) {
+                                  return _c("tr", { key: item.id }, [
+                                    _c("td", [_vm._v(_vm._s(item.id))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.passport))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          item.given_name + " " + item.surname
+                                        )
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.email))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.mobile))]),
+                                    _vm._v(" "),
+                                    _c("td", [_vm._v(_vm._s(item.birth_date))]),
+                                    _vm._v(" "),
+                                    _c("td", [
+                                      _vm._v(
+                                        _vm._s(
+                                          item.status === 0
+                                            ? "Disabled"
+                                            : "Enabled"
+                                        )
+                                      ),
+                                    ]),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              color: "error",
+                                              icon: "",
+                                              "x-small": "",
+                                            },
+                                            on: {
+                                              click: function ($event) {
+                                                return _vm.removePassenger(
+                                                  item.id
+                                                )
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _c("v-icon", [
+                                              _vm._v("mdi-delete"),
+                                            ]),
+                                          ],
+                                          1
+                                        ),
+                                      ],
+                                      1
+                                    ),
+                                  ])
+                                }),
+                                0
+                              ),
+                            ]
+                          },
+                          proxy: true,
+                        },
+                      ],
+                      null,
+                      false,
+                      2647750036
+                    ),
+                  }),
+                ],
+                1
+              )
+            : _c("v-col", [
+                _c("h3", { staticClass: "text-center" }, [
+                  _vm._v("\n                No Passengers\n            "),
+                ]),
+              ]),
         ],
         1
       ),
@@ -22967,7 +23504,21 @@ var render = function () {
                       staticClass: "rounded-lg",
                       attrs: { color: "primary", type: "submit" },
                     },
-                    [_vm._v("\n                Book\n            ")]
+                    [_vm._v("\n                Add Passenger\n            ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      staticClass: "rounded-lg",
+                      attrs: { color: "primary" },
+                      on: {
+                        click: function ($event) {
+                          return _vm.$emit("onClose")
+                        },
+                      },
+                    },
+                    [_vm._v("Close and Finish")]
                   ),
                 ],
                 1
@@ -22977,6 +23528,52 @@ var render = function () {
           ),
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          attrs: { top: "", center: "", color: "primary", timeout: "10000" },
+          scopedSlots: _vm._u([
+            {
+              key: "action",
+              fn: function (ref) {
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._b(
+                      {
+                        attrs: { color: "grey darken-3", text: "" },
+                        on: {
+                          click: function ($event) {
+                            _vm.status.snackbar = false
+                          },
+                        },
+                      },
+                      "v-btn",
+                      attrs,
+                      false
+                    ),
+                    [_vm._v("\n                Close\n            ")]
+                  ),
+                ]
+              },
+            },
+          ]),
+          model: {
+            value: _vm.status.snackbar,
+            callback: function ($$v) {
+              _vm.$set(_vm.status, "snackbar", $$v)
+            },
+            expression: "status.snackbar",
+          },
+        },
+        [
+          _c("p", { staticClass: "white--text" }, [
+            _vm._v(_vm._s(_vm.status.text)),
+          ]),
+        ]
       ),
     ],
     1
@@ -24155,7 +24752,7 @@ var render = function () {
           _vm._v(" "),
           _c("v-spacer"),
           _vm._v(" "),
-          _vm.tour != null
+          _vm.tour != null && _vm.tour.tourDates.length
             ? _c("new-booking", {
                 attrs: { dates: _vm.tour.tourDates, "tour-id": _vm.tour.id },
               })
@@ -24185,24 +24782,45 @@ var render = function () {
                         ]),
                       ]),
                       _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "4" } },
-                        [
-                          _c("h1", [_vm._v("Tour Dates")]),
-                          _vm._v(" "),
-                          _c("tour-dates-list", {
-                            attrs: { "tour-dates": _vm.tour.tourDates },
-                          }),
-                        ],
-                        1
-                      ),
+                      _vm.tour.tourDates.length
+                        ? _c(
+                            "v-col",
+                            { attrs: { cols: "4" } },
+                            [
+                              _c("h1", [_vm._v("Tour Dates")]),
+                              _vm._v(" "),
+                              _c("tour-dates-list", {
+                                attrs: { "tour-dates": _vm.tour.tourDates },
+                              }),
+                            ],
+                            1
+                          )
+                        : _c("v-col", { attrs: { cols: "4" } }, [
+                            _c("h3", { staticClass: "text-center" }, [
+                              _vm._v("No Public Tour Dates Available"),
+                            ]),
+                          ]),
                     ],
                     1
                   ),
                 ],
                 1
               ),
+              _vm._v(" "),
+              _vm.tour.bookings.length
+                ? _c(
+                    "v-card-text",
+                    { staticClass: "pa-4" },
+                    [
+                      _c("h1", [_vm._v("Bookings")]),
+                      _vm._v(" "),
+                      _c("booking-list", {
+                        attrs: { bookings: _vm.tour.bookings },
+                      }),
+                    ],
+                    1
+                  )
+                : _vm._e(),
             ],
             1
           )

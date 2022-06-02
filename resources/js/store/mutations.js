@@ -13,9 +13,7 @@ let mutations = {
 
     UPDATE_LIST_ITEM (state, payload) {
         let i = state.list.findIndex((item => item.id === payload.id));
-        state.list[i].name = payload.name
-        state.list[i].itenary = payload.itenary
-        state.list[i].status = payload.status
+        state.list[i] = payload
     },
 
     SET_LIST_ITEM (state, payload) {
